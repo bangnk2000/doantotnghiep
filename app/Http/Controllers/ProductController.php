@@ -121,7 +121,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
         $product=Product::findOrFail($id);
         $this->validate($request,[
             'title'=>'string|required',

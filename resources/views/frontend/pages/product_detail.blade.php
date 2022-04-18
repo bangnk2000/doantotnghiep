@@ -88,33 +88,7 @@
 												<p class="description">{!!($product_detail->summary)!!}</p>
 											</div>
 											<!--/ End Description -->
-											<!-- Color -->
-											{{-- <div class="color">
-												<h4>Available Options <span>Color</span></h4>
-												<ul>
-													<li><a href="#" class="one"><i class="ti-check"></i></a></li>
-													<li><a href="#" class="two"><i class="ti-check"></i></a></li>
-													<li><a href="#" class="three"><i class="ti-check"></i></a></li>
-													<li><a href="#" class="four"><i class="ti-check"></i></a></li>
-												</ul>
-											</div> --}}
-											<!--/ End Color -->
-											<!-- Size -->
-											@if($product_detail->size)
-												<div class="size mt-4">
-													<h4>Size</h4>
-													<ul>
-														@php 
-															$sizes=explode(',',$product_detail->size);
-															// dd($sizes);
-														@endphp
-														@foreach($sizes as $size)
-														<li><a href="#" class="one">{{$size}}</a></li>
-														@endforeach
-													</ul>
-												</div>
-											@endif
-											<!--/ End Size -->
+										
 											<!-- Product Buy -->
 											<div class="product-buy">
 												<form action="{{route('single-add-to-cart')}}" method="POST">
@@ -143,11 +117,17 @@
 														<a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i class="ti-heart"></i></a>
 													</div>
 												</form>
-
-												<p class="cat">Category :<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
-												@if($product_detail->sub_cat_info)
+												@php
+													$product_cate = $product_detail->categories;
+												@endphp
+												@foreach ($product_cate as  $data)
+													@if ($data->parent_id == 0)
+													<p class="cat">Category:<a href="{{route('product-cat',$data->slug)}}">{{$data->title}}</a></p>
+													@endif
+												@endforeach
+												{{-- @if($product_detail->sub_cat_info)
 												<p class="cat mt-1">Sub Category :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
-												@endif
+												@endif --}}
 												<p class="availability">Stock : @if($product_detail->stock>0)<span class="badge badge-success">{{$product_detail->stock}}</span>@else <span class="badge badge-danger">{{$product_detail->stock}}</span>  @endif</p>
 											</div>
 											<!--/ End Product Buy -->
@@ -316,12 +296,12 @@
                 {{-- {{$product_detail->rel_prods}} --}}
                 <div class="col-12">
                     <div class="owl-carousel popular-slider">
-                        @foreach($product_detail->rel_prods as $data)
-                            @if($data->id !==$product_detail->id)
+                        {{-- @foreach($product_detail->rel_prods as $data)
+                            @if($data->id !==$product_detail->id) --}}
                                 <!-- Start Single Product -->
                                 <div class="single-product">
                                     <div class="product-img">
-										<a href="{{route('product-detail',$data->slug)}}">
+										{{-- <a href="{{route('product-detail',$data->slug)}}">
 											@php 
 												$photo=explode(',',$data->photo);
 											@endphp
@@ -329,34 +309,34 @@
                                             <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                             <span class="price-dec">{{$data->discount}} % Off</span>
                                                                     {{-- <span class="out-of-stock">Hot</span> --}}
-                                        </a>
+                                        {{-- </a> --}}
                                         <div class="button-head">
-                                            <div class="product-action">
+                                            {{-- <div class="product-action">
                                                 <a data-toggle="modal" data-target="#modelExample" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                             </div>
                                             <div class="product-action-2">
                                                 <a title="Add to cart" href="#">Add to cart</a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title}}</a></h3>
+                                        {{-- <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title}}</a></h3>
                                         <div class="product-price">
                                             @php 
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
                                             <span class="old">${{number_format($data->price,2)}}</span>
                                             <span>${{number_format($after_discount,2)}}</span>
-                                        </div>
+                                        </div> --}}
                                       
                                     </div>
                                 </div>
                                 <!-- End Single Product -->
                                 	
-                            @endif
-                        @endforeach
+                            {{-- @endif
+                        @endforeach --}}
                     </div>
                 </div>
             </div>

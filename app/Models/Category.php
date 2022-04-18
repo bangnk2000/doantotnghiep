@@ -47,7 +47,23 @@ class Category extends Model
     public static function getProductByCat($slug){
         // dd($slug);
         return Category::with('products')->where('slug',$slug)->first();
+        // return Category::where('slug',$slug)->first()->load('products');
+        
         // return Product::where('cat_id',$id)->where('child_cat_id',null)->paginate(10);
+    }
+
+    public function product_info(){
+        return $this->hasOne('App\Models\Product','id','cat_id');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_category',
+            'categories_id',
+            'products_id',
+        );
     }
     // public static function getProductBySubCat($slug){
     //     // return $slug;

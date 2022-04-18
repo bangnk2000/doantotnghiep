@@ -59,7 +59,6 @@ class ProductReviewController extends Controller
             'actionURL'=>route('product-detail',$product_info->slug),
             'fas'=>'fa-star'
         ];
-        Notification::send($user,new StatusNotification($details));
         if($status){
             request()->session()->flash('success','Thank you for your feedback');
         }
