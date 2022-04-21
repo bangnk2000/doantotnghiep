@@ -3,7 +3,7 @@
 @section('title','E-SHOP || PRODUCT PAGE')
 
 @section('main-content')
-	
+
 		<!-- Breadcrumbs -->
 		<div class="breadcrumbs">
 			<div class="container">
@@ -30,34 +30,70 @@
 							<div class="shop-sidebar">
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
-                                    <h3 class="title">Categories</h3>
-                                    <ul class="categor-list">
-										{{-- @php
-											$menu=App\Models\Category::getAllParentWithChild();
-										@endphp
-										@if($menu)
-										<li>
-											@foreach($menu as $cat_info)
-													@if($cat_info->child_cat->count()>0)
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
-															<ul>
-																@foreach($cat_info->child_cat as $sub_menu)
-																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
-																@endforeach
-															</ul>
-														</li>
-													@else
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-													@endif
-											@endforeach
-										</li>
-										@endif --}}
-                                        @foreach(Helper::productCategoryList('products') as $cat)
-                                            @if($cat->parent_id==0)
-												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-											@endif
+                                    <h2 class="title">Categories</h2>
+{{--                                    <ul class="categor-list">--}}
+{{--										--}}{{-- @php--}}
+{{--											$menu=App\Models\Category::getAllParentWithChild();--}}
+{{--										@endphp--}}
+{{--										@if($menu)--}}
+{{--										<li>--}}
+{{--											@foreach($menu as $cat_info)--}}
+{{--													@if($cat_info->child_cat->count()>0)--}}
+{{--														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>--}}
+{{--															<ul>--}}
+{{--																@foreach($cat_info->child_cat as $sub_menu)--}}
+{{--																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>--}}
+{{--																@endforeach--}}
+{{--															</ul>--}}
+{{--														</li>--}}
+{{--													@else--}}
+{{--														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>--}}
+{{--													@endif--}}
+{{--											@endforeach--}}
+{{--										</li>--}}
+{{--										@endif --}}
+{{--                                        @foreach($categoryParent as $category)--}}
+{{--                                                <li><a href="{{route('product-cat',$category->slug)}}">--}}
+{{--                                                        {{$category->title}}</a>--}}
+{{--                                                    @if($category->child_cat->count())--}}
+{{--                                                        <i class="fa fa-plus float-right"></i>--}}
+{{--                                                    @endif--}}
+{{--                                                </li>--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+                                    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                                        @foreach($categoryParent as $category)
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h6 class="panel-title" style="margin: 10px;">
+                                                        <a data-toggle="collapse" data-parent="#accordian"
+                                                           href="#sportswear_{{$category->id}}">
+                                                            <span class="badge pull-right">
+                                                                 @if($category->child_cat->count())
+                                                                        <i class="fa fa-plus"></i>
+                                                                @endif
+                                                             </span>
+                                                        </a>
+                                                       <a href="{{route('product-cat',$category->slug)}}">{{ $category->title }}</a>
+                                                    </h6>
+                                                </div>
+                                                <div id="sportswear_{{$category->id}}" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <ul>
+                                                            @foreach($category->child_cat as $categoryChilrent)
+                                                                <li>
+                                                                    <a href="{{route('product-cat',$category->slug)}}" style="margin-left: 20px">
+                                                                        {{ $categoryChilrent->title }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
-                                    </ul>
+                                    </div><!--/category-products-->
+
                                 </div>
                                 <!--/ End Single Widget -->
                                 <!-- Shop By Price -->
@@ -105,7 +141,7 @@
                                     {{-- {{dd($recent_products)}} --}}
                                     @foreach($recent_products as $product)
                                         <!-- Single Post -->
-                                        @php 
+                                        @php
                                             $photo=explode(',',$product->photo);
                                         @endphp
                                         <div class="single-post first">
@@ -117,7 +153,7 @@
                                                 @php
                                                     $org=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <p class="price"><del class="text-muted">${{number_format($product->price,2)}}</del>   ${{number_format($org,2)}}  </p>                                                
+                                                <p class="price"><del class="text-muted">${{number_format($product->price,2)}}</del>   ${{number_format($org,2)}}  </p>
                                             </div>
                                         </div>
                                         <!-- End Single Post -->
@@ -185,7 +221,7 @@
 													<div class="single-product">
 														<div class="product-img">
 															<a href="{{route('product-detail',$product->slug)}}">
-															@php 
+															@php
 																$photo=explode(',',$product->photo);
 															@endphp
 															<img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
@@ -237,7 +273,7 @@
 					</div>
 				</div>
 			</section>
-			<!--/ End Product Style 1  -->	
+			<!--/ End Product Style 1  -->
 		</form>
 		<!-- Modal -->
 		@if($products)
@@ -254,7 +290,7 @@
 											<!-- Product Slider -->
 												<div class="product-gallery">
 													<div class="quickview-slider-active">
-														@php 
+														@php
 															$photo=explode(',',$product->photo);
 														// dd($photo);
 														@endphp
@@ -285,7 +321,7 @@
 															@for($i=1; $i<=5; $i++)
 																@if($rate>=$i)
 																	<i class="yellow fa fa-star"></i>
-																@else 
+																@else
 																<i class="fa fa-star"></i>
 																@endif
 															@endfor
@@ -295,7 +331,7 @@
 													<div class="quickview-stock">
 														@if($product->stock >0)
 														<span><i class="fa fa-check-circle-o"></i> {{$product->stock}} in stock</span>
-														@else 
+														@else
 														<span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} out stock</span>
 														@endif
 													</div>
@@ -311,7 +347,7 @@
 													<div class="size">
 														<h4>Size</h4>
 														<ul>
-															@php 
+															@php
 																$sizes=explode(',',$product->size);
 																// dd($sizes);
 															@endphp
@@ -322,7 +358,7 @@
 													</div>
 												@endif
 												<form action="{{route('single-add-to-cart')}}" method="POST">
-													@csrf 
+													@csrf
 													<div class="quantity">
 														<!-- Input Order -->
 														<div class="input-group">
@@ -403,7 +439,7 @@
 					else{
                         swal('error',response.msg,'error').then(function(){
 							// document.location.href=document.location.href;
-						}); 
+						});
                     }
                 }
             })
@@ -422,7 +458,7 @@
             if($("#price_range").length > 0 && $("#price_range").val()){
                 price_range = $("#price_range").val().trim();
             }
-            
+
             let price = price_range.split('-');
             $("#slider-range").slider({
                 range: true,
