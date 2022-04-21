@@ -54,7 +54,7 @@ class CategoryController extends Controller
             $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
         }
         $data['slug']=$slug;
-        // return $data;   
+        // return $data;
         $status=Category::create($data);
         if($status){
             request()->session()->flash('success','Danh mục mới đã thêm thành công');
@@ -135,7 +135,7 @@ class CategoryController extends Controller
         $child_cat_id=Category::where('parent_id',$id)->pluck('id');
         // return $child_cat_id;
         $status=$category->delete();
-        
+
         if($status){
             if(count($child_cat_id)>0){
                 Category::shiftChild($child_cat_id);
