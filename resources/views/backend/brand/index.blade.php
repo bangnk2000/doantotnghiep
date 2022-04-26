@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách thương hiệu</h6>
-      <a href="{{route('brand.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm thương hiệu mới</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Brand List</h6>
+      <a href="{{route('brand.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Brand</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,19 +18,19 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>STT</th>
-              <th>Tên thương hiệu</th>
+              <th>ID</th>
+              <th>Name</th>
               <th>Slug</th>
-              <th>Trạng thái</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>STT</th>
-              <th>Tên thương hiệu</th>
+              <th>ID</th>
+              <th>Name</th>
               <th>Slug</th>
-              <th>Trạng thái</th>
+              <th>Status</th>
               <th>Action</th>
               </tr>
           </tfoot>
@@ -61,7 +61,7 @@
         </table>
         <span style="float:right">{{$brands->links()}}</span>
         @else
-          <h6 class="text-center">Không tìm thấy nhãn hiệu !!! Hãy tạo thương hiệu</h6>
+          <h6 class="text-center">No Brands found!!! Please create Brand</h6>
         @endif
       </div>
     </div>
@@ -97,6 +97,7 @@
   <script>
       
       $('#banner-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

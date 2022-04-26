@@ -31,7 +31,7 @@
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
                                     <h2 class="title">Categories</h2>
-{{--                                    <ul class="categor-list">--}}
+                                   <ul class="categor-list">
 {{--										--}}{{-- @php--}}
 {{--											$menu=App\Models\Category::getAllParentWithChild();--}}
 {{--										@endphp--}}
@@ -60,9 +60,14 @@
 {{--                                                    @endif--}}
 {{--                                                </li>--}}
 {{--                                        @endforeach--}}
-{{--                                    </ul>--}}
+										@foreach(Helper::productCategoryList('products') as $cat)
+										@if($cat->parent_id==0)
+											<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+										@endif
+										@endforeach	
+                                   </ul>
                                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                                        @foreach($categoryParent as $category)
+                                        {{-- @foreach($categoryParent as $category)
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h6 class="panel-title" style="margin: 10px;">
@@ -91,7 +96,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        @endforeach --}}
                                     </div><!--/category-products-->
 
                                 </div>

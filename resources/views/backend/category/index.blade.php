@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách danh mục</h6>
-      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm danh mục mới</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Category Lists</h6>
+      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Category</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,23 +18,23 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Tên danh mục</th>
+              <th>ID</th>
+              <th>Name</th>
               <th>Slug</th>
-              <th>Tên danh mục cha</th>
+              <th>Parent Category</th>
               <th>Photo</th>
-              <th>Trạng thái</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
-              <th>Tên danh mục</th>
+              <th>ID</th>
+              <th>Name</th>
               <th>Slug</th>
-              <th>Tên danh mục cha</th>
+              <th>Parent Category</th>
               <th>Photo</th>
-              <th>Trạng thái</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </tfoot>
@@ -78,7 +78,7 @@
         </table>
         <span style="float:right">{{$categories->links()}}</span>
         @else
-          <h6 class="text-center">Không tìm thấy danh mục !!! Vui lòng tạo danh mục</h6>
+          <h6 class="text-center">No categories found !!! Please create banner</h6>
         @endif
       </div>
     </div>
@@ -107,6 +107,7 @@
   <script>
 
       $('#banner-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

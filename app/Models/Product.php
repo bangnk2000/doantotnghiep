@@ -15,9 +15,13 @@ class Product extends Model
     public static function getAllProduct(){
         return Product::with(['cat_info'])->orderBy('id','desc')->paginate(10);
     }
-    // public function rel_prods(){
-    //     return $this->hasMany('App\Models\Product','cat_id','cat_id')->where('status','active')->orderBy('id','DESC')->limit(8);
-    // }
+    public function rel_prods($id){
+        return Product::whereHas('categories.products', function($q) use($id) {
+            $q->where('products.id', $id);
+        })
+        ->get();
+        // return $this->hasManyThrough(Product::class, Cat)->where('status','active')->orderBy('id','DESC')->limit(8);
+    }
     public function getReview(){
         return $this->hasMany('App\Models\ProductReview','product_id','id')->with('user_info')->where('status','active')->orderBy('id','DESC');
     }

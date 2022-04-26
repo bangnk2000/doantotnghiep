@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách sản phẩm</h6>
-      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm sản phẩm mới</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
+      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,32 +19,32 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Tên sản phẩm</th>
-              <th>Danh mục</th>
+              <th>Name</th>
+              <th>Category</th>
               <th>Is Featured</th>
-              <th>Giá</th>
+              <th>Price</th>
               <th>Discount</th>
-              <th>Loại sản phẩm</th>
-              <th>Thương hiệu</th>
-              <th>Số lượng</th>
+              <th>Condition</th>
+              <th>Brand</th>
+              <th>Stock</th>
               <th>Photo</th>
-              <th>Trạng thái</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>ID</th>
-              <th>Tên sản phẩm</th>
-              <th>Danh mục</th>
+              <th>Name</th>
+              <th>Category</th>
               <th>Is Featured</th>
-              <th>Giá</th>
+              <th>Price</th>
               <th>Discount</th>
-              <th>Loại sản phẩm</th>
-              <th>Thương hiệu</th>
-              <th>Số lượng</th>
+              <th>Condition</th>
+              <th>Brand</th>
+              <th>Stock</th>
               <th>Photo</th>
-              <th>Trạng thái</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </tfoot>
@@ -142,7 +142,8 @@
   <script>
 
       $('#product-dataTable').DataTable( {
-        "scrollX": false
+        "bLengthChange" : false,
+        "scrollX": false,
             "columnDefs":[
                 {
                     "orderable":false,

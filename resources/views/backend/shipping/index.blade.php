@@ -117,6 +117,7 @@
   <script>
       
       $('#banner-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

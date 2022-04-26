@@ -90,6 +90,7 @@
   <script>
       
       $('#post-category-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

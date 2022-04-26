@@ -124,6 +124,7 @@
   <script>
       
       $('#product-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

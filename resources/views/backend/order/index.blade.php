@@ -17,7 +17,7 @@
         <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
+              <th>ID</th>
               <th>Order No.</th>
               <th>Name</th>
               <th>Email</th>
@@ -29,7 +29,7 @@
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
+              <th>ID</th>
               <th>Order No.</th>
               <th>Name</th>
               <th>Email</th>
@@ -103,6 +103,7 @@
   <script>
       
       $('#order-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

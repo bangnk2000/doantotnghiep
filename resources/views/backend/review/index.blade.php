@@ -108,6 +108,7 @@
   <script>
 
       $('#order-dataTable').DataTable( {
+        "bLengthChange" : false,
             "columnDefs":[
                 {
                     "orderable":false,

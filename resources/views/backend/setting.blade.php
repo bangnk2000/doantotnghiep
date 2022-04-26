@@ -103,14 +103,14 @@
     $('#lfm1').filemanager('image');
     $(document).ready(function() {
       $('#quote').summernote({
-        placeholder: "Viết mô tả ngắn.....",
+        placeholder: "Write quote.....",
           tabsize: 2,
           height: 100
       });
     });
     $(document).ready(function() {
       $('#description').summernote({
-        placeholder: "Viết mô tả chi tiết.....",
+        placeholder: "Write description.....",
           tabsize: 2,
           height: 150
       });

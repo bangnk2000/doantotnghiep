@@ -39,12 +39,11 @@
 <section class="small-banner section">
     <div class="container-fluid">
         <div class="row">
-            {{-- @php
-            $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
+            @php
+            $category_lists=DB::table('categories')->where('status','active')->where('parent_id','0')->limit(3)->get();
             @endphp
             @if($category_lists)
                 @foreach($category_lists as $cat)
-                    @if($cat->is_parent==1)
                         <!-- Single Banner  -->
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="single-banner">
@@ -59,10 +58,9 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
                     <!-- /End Single Banner  -->
                 @endforeach
-            @endif --}}
+            @endif
         </div>
     </div>
 </section>
@@ -122,7 +120,7 @@
                                                     <span class="new">New</span
                                                 @elseif($product->condition=='hot')
                                                     <span class="hot">Hot</span>
-                                                @else
+                                                @elseif($product->discount != null)
                                                     <span class="price-dec">{{$product->discount}}% Off</span>
                                                 @endif
 
@@ -145,7 +143,9 @@
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
                                                 <span>${{number_format($after_discount,2)}}</span>
-                                                <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                                                @if (number_format($after_discount,2) != number_format($product->price,2))
+                                                    <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
