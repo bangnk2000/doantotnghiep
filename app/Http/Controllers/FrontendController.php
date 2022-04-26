@@ -193,7 +193,7 @@ class FrontendController extends Controller
             if(!empty($data['price_range'])){
                 $priceRangeURL .='&price='.$data['price_range'];
             }
-            if(request()->is('nl_shop.test/product-grids')){
+            if(request()->is('127.0.0.1:8000/product-grids')){
                 return redirect()->route('product-grids',$catURL.$brandURL.$priceRangeURL.$showURL.$sortByURL);
             }
             else{
@@ -215,7 +215,7 @@ class FrontendController extends Controller
     public function productBrand(Request $request){
         $products=Brand::getProductByBrand($request->slug);
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
-        if(request()->is('nl_shop.test/product-grids')){
+        if(request()->is('127.0.0.1:8000/product-grids')){
             return view('frontend.pages.product-grids')->with('products',$products->products)->with('recent_products',$recent_products);
         }
         else{
@@ -229,7 +229,7 @@ class FrontendController extends Controller
         // return $request->slug;
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
 
-        if(request()->is('nl_shop.test/product-grids')){
+        if(request()->is('127.0.0.1:8000/product-grids')){
             return view('frontend.pages.product-grids')
                 ->with('products',$products->products)
                 ->with('categoryParent',$categoryParent)
@@ -248,7 +248,7 @@ class FrontendController extends Controller
         // return $products;
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
 
-        if(request()->is('nl_shop.test/product-grids')){
+        if(request()->is('127.0.0.1:8000/product-grids')){
             return view('frontend.pages.product-grids')->with('products',$products->sub_products)->with('recent_products',$recent_products);
         }
         else{
