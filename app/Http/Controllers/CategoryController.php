@@ -87,7 +87,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category=Category::findOrFail($id);
-        $parentCategories = Category::where('parent_id', 0)->get();
+        $parentCategories = Category::where('parent_id', 0)->where('id', '<>', $id)->get();
         return view('backend.category.edit')->with('category',$category)->with('parentCategories', $parentCategories);
     }
 
@@ -107,11 +107,9 @@ class CategoryController extends Controller
             'summary'=>'string|nullable',
             'photo'=>'string|nullable',
             'status'=>'required|in:active,inactive',
-            'is_parent'=>'sometimes|in:1',
-            'parent_id'=>'nullable|exists:categories,id',
+            'parent_id'=>'nullable',
         ]);
-        $data= $request->all();
-        $data['is_parent']=$request->input('is_parent',0);
+        $data = $request->all();
         // return $data;
         $status=$category->fill($data)->save();
         if($status){
