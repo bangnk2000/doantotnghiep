@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Socialite;
 use App\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -57,13 +59,16 @@ class LoginController extends Controller
         $users      =   User::where(['email' => $userSocial->getEmail()])->first();
         // dd($users);
         if($users){
-            Auth::login($users);
+            Auth::loginUsingId($users->id);
+            $email = Auth::user()->email;
+            Session::put('user', $email);
             return redirect('/')->with('success','You are login from '.$provider);
         }else{
             $user = User::create([
                 'name'          => $userSocial->getName(),
                 'email'         => $userSocial->getEmail(),
                 'image'         => $userSocial->getAvatar(),
+                'passsword'     => Hash::make('password'),
                 'provider_id'   => $userSocial->getId(),
                 'provider'      => $provider,
             ]);
