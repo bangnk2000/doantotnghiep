@@ -1,5 +1,5 @@
 
-<!-- Start Shop Newsletter  -->
+{{-- <!-- Start Shop Newsletter  -->
 <section class="shop-newsletter section">
     <div class="container">
         <div class="inner-top">
@@ -21,4 +21,4 @@
         </div>
     </div>
 </section>
-<!-- End Shop Newsletter -->
+<!-- End Shop Newsletter --> --}}

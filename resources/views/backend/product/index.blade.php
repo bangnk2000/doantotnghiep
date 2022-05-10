@@ -51,9 +51,6 @@
           <tbody>
 
             @foreach($products as $product)
-              @php
-                $brands = DB::table('brands')->select('title')->where('id',$product->brand_id)->get();
-              @endphp
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->title}}</td>

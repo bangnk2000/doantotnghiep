@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','E-SHOP || HOME PAGE')
+@section('title','NL-SHOP || HOME PAGE')
 @section('main-content')
 <!-- Slider Area -->
 @if(count($banners)>0)
@@ -82,7 +82,6 @@
                             <ul class="nav nav-tabs " id="myTab" role="tablist">
                                 @php
                                     $categories=DB::table('categories')->where('status','active')->where('parent_id',0)->get();
-                                    // dd($categories);
                                 @endphp
                                 @if($categories)
                                 <button class="btn" style="background:black" data-filter="*">
@@ -104,7 +103,11 @@
                              <!-- Start Single Tab -->
                             @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
-                                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
+                                    
+                                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item 
+                                    @foreach ( $product->getCategoriesIdsAttribute() as $category)
+                                    {{$category}}
+                                    @endforeach">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="{{route('product-detail',$product->slug)}}">
