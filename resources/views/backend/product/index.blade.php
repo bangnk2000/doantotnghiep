@@ -63,7 +63,7 @@
                         @endforeach
                     </td>
                     <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td>
-                    <td>{{number_format($product->price)}} VNĐ</td>
+                    <td>${{number_format($product->price)}}</td>
                     <td>{{$product->discount != null ? $product->discount.' % OFF' : ''}}</td>
                     <td>{{$product->condition}}</td>
                     <td>{{ ucfirst($product->brand->title ?? '')}}</td>

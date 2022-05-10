@@ -15,8 +15,6 @@
                 <div class="carousel-item {{(($key==0)? 'active' : '')}}">
                     <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
                     <div class="carousel-caption d-none d-md-block text-left">
-                        <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                        <p>{!! html_entity_decode($banner->description) !!}</p>
                         <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
                     </div>
                 </div>
@@ -81,19 +79,21 @@
                     <div class="product-info">
                         <div class="nav-main">
                             <!-- Tab Nav -->
-                            <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
+                            <ul class="nav nav-tabs " id="myTab" role="tablist">
                                 @php
                                     $categories=DB::table('categories')->where('status','active')->where('parent_id',0)->get();
                                     // dd($categories);
                                 @endphp
                                 @if($categories)
-                                <button class="btn" style="background:black"data-filter="*">
+                                <button class="btn" style="background:black" data-filter="*">
                                     All Products
                                 </button>
                                     @foreach($categories as $key=>$cat)
 
-                                    <button class="btn" style="background:none;color:black;"data-filter=".{{$cat->id}}">
-                                        {{$cat->title}}
+                                    <button class="btn" style="background:none;color:black;">
+                                        <a href="">
+                                            {{$cat->title}}
+                                        </a>
                                     </button>
                                     @endforeach
                                 @endif
@@ -166,31 +166,31 @@
 <!-- End Product Area -->
 
 <!-- Start Midium Banner  -->
-<section class="midium-banner">
-    <div class="container">
-        <div class="row">
-            @if($featured)
-                @foreach($featured as $data)
-                    <!-- Single Banner  -->
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="single-banner">
-                            @php
-                                $photo=explode(',',$data->photo);
-                            @endphp
-                            <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                            <div class="content">
-                                {{-- <p>{{$data->cat_info['title']}}</p> --}}
-                                <h3>{{$data->title}} <br>Up to<span> {{$data->discount}}%</span></h3>
-                                <a href="{{route('product-detail',$data->slug)}}">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /End Single Banner  -->
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section>
+{{--<section class="midium-banner">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            @if($featured)--}}
+{{--                @foreach($featured as $data)--}}
+{{--                    <!-- Single Banner  -->--}}
+{{--                    <div class="col-lg-6 col-md-6 col-12">--}}
+{{--                        <div class="single-banner">--}}
+{{--                            @php--}}
+{{--                                $photo=explode(',',$data->photo);--}}
+{{--                            @endphp--}}
+{{--                            <img src="{{$photo[0]}}" alt="{{$photo[0]}}">--}}
+{{--                            <div class="content">--}}
+{{--                                --}}{{-- <p>{{$data->cat_info['title']}}</p> --}}
+{{--                                <h3>{{$data->title}} <br>Up to<span> {{$data->discount}}%</span></h3>--}}
+{{--                                <a href="{{route('product-detail',$data->slug)}}">Shop Now</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <!-- /End Single Banner  -->--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <!-- End Midium Banner -->
 
 <!-- Start Most Popular -->
@@ -480,12 +480,11 @@
         font-size: 50px;
         font-weight: bold;
         line-height: 100%;
-        color: #F7941D;
         }
 
         #Gslider .carousel-inner .carousel-caption p {
         font-size: 18px;
-        color: black;
+        color: white;
         margin: 28px 0 28px 0;
         }
 
@@ -528,7 +527,7 @@
             });
         });
 
-        var isotopeButton = $('.filter-tope-group button');
+        var isotopeButton = $('.filter-tope-group');
 
         $(isotopeButton).each(function(){
             $(this).on('click', function(){

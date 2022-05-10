@@ -64,7 +64,7 @@
 										@if($cat->parent_id==0)
 											<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
 										@endif
-										@endforeach	
+										@endforeach
                                    </ul>
                                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                                         {{-- @foreach($categoryParent as $category)
@@ -258,7 +258,7 @@
 														{{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
 														</div>
 														<p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
-														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a>
+{{--														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a>--}}
 													</div>
 												</div>
 											</div>

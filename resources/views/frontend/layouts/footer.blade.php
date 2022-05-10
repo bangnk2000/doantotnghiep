@@ -14,7 +14,7 @@
 							@php
 								$settings=DB::table('settings')->get();
 							@endphp
-							<p class="text">@foreach($settings as $data) {{$data->short_des}} @endforeach</p>
+							<p class="text" style="color: white">@foreach($settings as $data) {!! $data->description !!} @endforeach</p>
 							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
 						</div>
 						<!-- End Single Widget -->
@@ -70,7 +70,7 @@
 		<!-- End Footer Top -->
 	</footer>
 	<!-- /End Footer Area -->
- 
+
 	<!-- Jquery -->
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-migrate-3.0.0.js')}}"></script>
@@ -107,7 +107,7 @@
 	<!-- Active JS -->
 	<script src="{{asset('frontend/js/active.js')}}"></script>
 
-	
+
 	@stack('scripts')
 	<script>
 		setTimeout(function(){
