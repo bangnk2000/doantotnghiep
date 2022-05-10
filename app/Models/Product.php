@@ -58,6 +58,11 @@ class Product extends Model
         );
     }
 
+    public function getCategoriesIdsAttribute()
+    {
+        return $this->categories->pluck('id');
+    }
+
     public function attachCategory($categoryId)
     {
         return $this->categories()->attach($categoryId);

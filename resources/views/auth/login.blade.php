@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>E-SHOP || Login Page</title>
+  <title>NL-SHOP || Login Page</title>
   @include('backend.layouts.head')
 
 </head>
@@ -50,7 +50,7 @@
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                             <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
+                              Remember Me
                             </label>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                   <div class="text-center">
                     @if (Route::has('password.request'))
                         <a class="btn btn-link small" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                          Forgot Your Password?
                         </a>
                     @endif
                   </div>

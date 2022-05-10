@@ -54,7 +54,7 @@
       
 
         <div class="form-group">
-          <label for="price" class="col-form-label">Price(VNĐ) <span class="text-danger">*</span></label>
+          <label for="price" class="col-form-label">Price($) <span class="text-danger">*</span></label>
           <input id="price" type="number" name="price" placeholder="Enter price"  value="{{$product->price}}" class="form-control">
           @error('price')
           <span class="text-danger">{{$message}}</span>

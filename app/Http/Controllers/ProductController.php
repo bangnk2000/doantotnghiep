@@ -128,7 +128,7 @@ class ProductController extends Controller
             'description'=>'string|nullable',
             'photo'=>'string|required',
             'stock'=>"required|numeric",
-            'category_id'=>'required|exists:categories,id',
+            'category_id'=>'required',
             'brand_id'=>'nullable|exists:brands,id',
             'is_featured'=>'sometimes|in:1',
             'status'=>'required|in:active,inactive',

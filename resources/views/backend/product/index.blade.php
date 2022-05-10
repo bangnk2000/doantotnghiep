@@ -51,9 +51,6 @@
           <tbody>
 
             @foreach($products as $product)
-              @php
-                $brands = DB::table('brands')->select('title')->where('id',$product->brand_id)->get();
-              @endphp
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->title}}</td>
@@ -63,7 +60,7 @@
                         @endforeach
                     </td>
                     <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td>
-                    <td>{{number_format($product->price)}} VNĐ</td>
+                    <td>${{number_format($product->price)}}</td>
                     <td>{{$product->discount != null ? $product->discount.' % OFF' : ''}}</td>
                     <td>{{$product->condition}}</td>
                     <td>{{ ucfirst($product->brand->title ?? '')}}</td>
